@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="ROYAL ARENA — Play, compete and win in Free Fire esports tournaments.">
+  <title>ROYAL ARENA | PLAY • COMPETE • WIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Royal Arena home" data-nav="home">
+      <span class="brand-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 17 20 27 31 9l12 18 13-10-5 29H13L8 17Z" fill="currentColor"/><path d="M16 52h34" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="8" cy="15" r="4" fill="#fff0b0"/><circle cx="31" cy="8" r="4" fill="#fff0b0"/><circle cx="56" cy="15" r="4" fill="#fff0b0"/></svg></span>
+      <span><strong>ROYAL <em>ARENA</em></strong><small>PLAY • COMPETE • WIN</small></span>
+    </a>
+    <div class="top-actions">
+      <button class="wallet-chip" data-nav="wallet" aria-label="Open wallet"><span>✦</span><b id="top-coins">—</b></button>
+      <button class="icon-btn" data-nav="notifications" aria-label="Notifications">♢<i id="notification-dot"></i></button>
+      <button class="avatar-btn" id="top-avatar" data-nav="profile" aria-label="Open profile">?</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section id="view-home" class="view active">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="live-dot"></span> THE BATTLE STARTS HERE</span>
+          <h1>ENTER THE<br><span>ROYAL ARENA.</span></h1>
+          <p>Compete with the best. Climb the ranks. Make every match count.</p>
+          <div class="hero-actions"><button class="btn btn-gold" data-nav="matches">Explore matches <span>↗</span></button><button class="btn btn-ghost" data-action="auth">Join the arena</button></div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="hero-crown">♛</div><div class="hero-spark spark-a">✦</div><div class="hero-spark spark-b">✧</div><div class="hero-tag">SEASON <b>01</b></div></div>
+        <div class="hero-foot"><span>FREE FIRE COMMUNITY TOURNAMENTS</span><span>EST. 2026&nbsp; / &nbsp;INDIA</span></div>
+      </div>
+
+      <div class="section-heading"><div><span class="eyebrow">YOUR NEXT CHALLENGE</span><h2>Featured matches</h2></div><button class="text-btn" data-nav="matches">View all <span>→</span></button></div>
+      <div class="tournament-grid" id="featured-grid"></div>
+
+      <div class="stats-strip">
+        <div><strong id="stat-tournaments">—</strong><span>TOURNAMENTS</span></div>
+        <div><strong id="stat-players">—</strong><span>PLAYERS</span></div>
+        <div><strong>24/7</strong><span>COMPETITION</span></div>
+      </div>
+      <div class="section-heading"><div><span class="eyebrow">HOW IT WORKS</span><h2>Three steps to glory</h2></div></div>
+      <div class="steps-grid"><article class="step-card"><b>01</b><span>♙</span><h3>Create your profile</h3><p>Sign up and add your in-game Free Fire UID.</p></article><article class="step-card"><b>02</b><span>⚔</span><h3>Join a match</h3><p>Choose Solo, Duo or Squad and enter a tournament.</p></article><article class="step-card"><b>03</b><span>♛</span><h3>Climb the ranks</h3><p>Play fair, earn points and rise on the leaderboard.</p></article></div>
+    </section>
+
+    <section id="view-matches" class="view">
+      <div class="page-title"><span class="eyebrow">FIND YOUR BATTLE</span><h1>TOURNAMENTS</h1><p>Pick your mode. Build your legacy.</p></div>
+      <div class="filter-row" id="mode-filters"><button class="filter active" data-filter="All">All modes</button><button class="filter" data-filter="Solo">Solo</button><button class="filter" data-filter="Duo">Duo</button><button class="filter" data-filter="Squad">Squad</button></div>
+      <div class="tournament-grid" id="all-grid"></div>
+    </section>
+
+    <section id="view-wallet" class="view">
+      <div class="page-title"><span class="eyebrow">YOUR REWARDS</span><h1>WALLET</h1><p>Track your demo points and activity.</p></div>
+      <div class="wallet-panel"><div><span class="eyebrow">AVAILABLE DEMO POINTS</span><div class="coin-total"><span>✦</span><strong id="wallet-coins">0</strong></div><p>Demo points only — no cash value or withdrawals.</p></div><div class="wallet-emblem">♛</div></div>
+      <div class="section-heading"><div><span class="eyebrow">ACCOUNT ACTIVITY</span><h2>Recent activity</h2></div></div><div class="list-panel" id="wallet-activity"><div class="empty-state">Sign in to view your account activity.</div></div>
+    </section>
+
+    <section id="view-ranks" class="view">
+      <div class="page-title"><span class="eyebrow">SEASON 01</span><h1>LEADERBOARD</h1><p>Every match is a chance to rise.</p></div>
+      <div class="podium" id="podium"></div>
+      <div class="list-panel leaderboard-list" id="leaderboard-list"></div>
+    </section>
+
+    <section id="view-profile" class="view">
+      <div class="page-title"><span class="eyebrow">PLAYER IDENTITY</span><h1>MY PROFILE</h1><p>Your arena identity, all in one place.</p></div>
+      <div class="profile-panel"><div class="profile-avatar" id="profile-avatar">?</div><div><h2 id="profile-name">Guest player</h2><p id="profile-email">Sign in to sync your profile</p><span class="rank-pill">ARENA ROOKIE</span></div></div>
+      <form class="form-panel" id="profile-form"><label>Display name<input id="display-name" maxlength="24" placeholder="Your gamer name"></label><label>Free Fire UID<input id="ff-uid" inputmode="numeric" maxlength="20" placeholder="Enter your in-game UID"></label><button class="btn btn-gold" type="submit">Save profile</button><p class="form-note" id="profile-note">Sign in to save profile details across devices.</p></form>
+      <button class="btn btn-danger hidden" id="signout-btn">Sign out</button>
+    </section>
+
+    <section id="view-notifications" class="view">
+      <div class="page-title"><span class="eyebrow">STAY IN THE LOOP</span><h1>NOTIFICATIONS</h1><p>Important arena updates and match news.</p></div>
+      <div class="list-panel" id="notifications-list"><div class="empty-state">No notifications yet.</div></div>
+    </section>
+
+    <section id="view-admin" class="view">
+      <div class="page-title"><span class="eyebrow">CONTROL ROOM</span><h1>ADMIN DASHBOARD</h1><p>Manage tournaments and review arena activity.</p></div>
+      <div class="admin-warning">Admin access is controlled by Firebase custom claims. A hidden button or frontend password is not security.</div>
+      <form class="form-panel" id="create-tournament-form">
+        <h2>Create tournament</h2>
+        <label>Tournament title<input id="new-title" required maxlength="60" placeholder="e.g. Royal Solo Showdown"></label>
+        <div class="form-two"><label>Mode<select id="new-mode"><option>Solo</option><option>Duo</option><option>Squad</option></select></label><label>Entry points<input id="new-entry" type="number" min="0" max="100000" value="0" required></label></div>
+        <div class="form-two"><label>Prize points<input id="new-prize" type="number" min="0" max="1000000" value="500" required></label><label>Max players<input id="new-capacity" type="number" min="2" max="1000" value="48" required></label></div>
+        <label>Match date & time<input id="new-date" type="datetime-local" required></label>
+        <label>Short description<input id="new-description" maxlength="120" placeholder="Battle for the top spot"></label>
+        <button class="btn btn-gold" type="submit">＋ Publish tournament</button><p class="form-note" id="admin-note"></p>
+      </form>
+      <div class="section-heading"><div><span class="eyebrow">LIVE MANAGEMENT</span><h2>Current tournaments</h2></div></div><div class="list-panel" id="admin-tournaments"></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-item active" data-nav="home"><span>⌂</span><small>Home</small></button>
+    <button class="nav-item" data-nav="matches"><span>⚔</span><small>Matches</small></button>
+    <button class="nav-item" data-nav="wallet"><span>✦</span><small>Wallet</small></button>
+    <button class="nav-item" data-nav="ranks"><span>♜</span><small>Ranks</small></button>
+    <button class="nav-item" data-nav="profile"><span>♙</span><small>Profile</small></button>
+  </nav>
+
+  <div class="modal-backdrop hidden" id="modal-backdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" data-action="close-modal" aria-label="Close">×</button><div id="modal-content"></div></section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <footer class="site-footer">ROYAL ARENA <span>•</span> PLAY FAIR. PLAY ROYAL.</footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

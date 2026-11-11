@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && request.auth.token.admin == true; }
+
+    match /tournaments/{tournamentId} {
+      allow read: if true;
+      allow write: if isAdmin(); // Normal tournament changes go through trusted functions.
+    }
+    match /profiles/{userId} {
+      allow read: if signedIn() && (request.auth.uid == userId || isAdmin());
+      allow create, update: if signedIn() && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly(['displayName','ffUid','createdAt'])
+        && request.resource.data.displayName is string
+        && request.resource.data.displayName.size() <= 24
+        && request.resource.data.ffUid is string
+        && request.resource.data.ffUid.size() <= 20;
+      allow delete: if isAdmin();
+    }
+    match /wallets/{userId} {
+      allow read: if signedIn() && (request.auth.uid == userId || isAdmin());
+      allow write: if false; // Only trusted Cloud Functions may change balances.
+    }
+    match /entries/{entryId} {
+      allow read: if signedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow write: if false; // Join through the callable function.
+    }
+    match /leaderboard/{userId} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /notifications/{notificationId} {
+      allow read: if signedIn() && resource.data.userId == request.auth.uid;
+      allow write: if isAdmin();
+    }
+  }
+}
